@@ -1,0 +1,85 @@
+***Base***
+//Create a collection named orders.
+
+> db.createCollection("orders");
+
+//Insert at least 3 documents that represent an order. IMPORTANT: See section below for fields. Order dates should be: 2017-02-03, 2017-04-04, 2017-01-02
+
+> db.orders.insert({orderDate: "2017-02-03", orderTotal: "49.99", lineItems: [{unitPrice: 4.99}, {quantity: 5}, {productName: "GoodTimes"}]});
+
+> db.orders.insert({orderDate: "2017-04-04", orderTotal: "39.99", lineItems: [{unitPrice: 3.99}, {quantity:6}, {productName: "BadTimes"}]});
+
+> db.orders.insert({orderDate: "2017-04-04", orderTotal: "59.99", lineItems: [{unitPrice: 12.99}, {quantity:25}, {productName: "YeOldeTimes"}]});
+
+//Find all orders and make them look pretty.
+
+> db.orders.find().pretty();
+{
+	"_id" : ObjectId("5ab12a09fc4d5216628bd356"),
+	"orderDate" : "2017-02-03",
+	"orderTotal" : "49.99",
+	"lineItems" : [
+		{
+			"unitPrice" : 4.99
+		},
+		{
+			"quantity" : 5
+		},
+		{
+			"productName" : "GoodTimes"
+		}
+	]
+}
+{
+	"_id" : ObjectId("5ab12d49fc4d5216628bd357"),
+	"orderDate" : "2017-04-04",
+	"orderTotal" : "39.99",
+	"lineItems" : [
+		{
+			"unitPrice" : 3.99
+		},
+		{
+			"quantity" : 6
+		},
+		{
+			"productName" : "BadTimes"
+		}
+	]
+}
+{
+	"_id" : ObjectId("5ab12dc2fc4d5216628bd358"),
+	"orderDate" : "2017-01-02",
+	"orderTotal" : "59.99",
+	"lineItems" : [
+		{
+			"unitPrice" : 12.99
+		},
+		{
+			"quantity" : 25
+		},
+		{
+			"productName" : "YeOldeTimes"
+		}
+	]
+}
+
+//Find all orders with an orderDate that is after 1/31/2017.
+
+> db.orders.find({orderDate: {$gt:"2017-01-31"}});
+
+//Change the orderTotal from 2/3/2017 to 63 dollars (you do NOT have to ensure the lineItems' unitPrice * quantity add up to the orderTotal)
+
+> db.orders.update({orderDate: "2017-02-03"}, {$set: {orderTotal: "63.00"}});
+
+***Stretch***
+//Add another lineItem to the order from 4/4/2017 hint: $push
+
+
+
+//Change the first lineItem in the order from 1/2/2017 to be for 2 'transistor radio's
+
+
+
+//Find orders with lineItems that have a quantity that is less than 10, but greater than 2. You will have to research $elemMatch
+
+
